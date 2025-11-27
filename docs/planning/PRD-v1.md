@@ -45,8 +45,8 @@
 ## Implementation Status
 
 **Last Updated**: 2025-11-27
-**Sprint**: 001
-**Overall Progress**: 43% (3 of 7 phases complete)
+**Sprint**: 003 (In Progress)
+**Overall Progress**: 70% (4.6 of 7 phases complete)
 
 ### Completed Phases
 
@@ -72,16 +72,17 @@
 #### ✅ Phase 1: Database & Auth Foundation (100%)
 - **Duration**: 2 days
 - **Status**: Complete
-- **Checkpoints**: 7/7 deliverables, 4/7 testable checkpoints
+- **Checkpoints**: 7/7 verified
 - **Tests**: 13/13 passing
 
 **Deliverables**:
 - Prisma schema with User + Project models
 - Password hashing utilities (bcrypt, cost factor 12)
-- Admin user seed script
+- Admin user seed script with environment variable support
 - NextAuth.js with Credentials provider
 - Session management (JWT, 7-day expiry)
-- Auth middleware for /admin routes
+- Auth middleware for /admin routes (src/middleware.ts)
+- Sign-in page with error handling
 - Comprehensive password utility tests
 
 **Key Decisions**:
@@ -90,11 +91,14 @@
 - JWT sessions over database sessions
 - Email/password authentication (no OAuth for v1)
 - Single admin user (expandable to roles)
+- Middleware must be in src/ directory for Next.js 15
 
-**Deferred Checkpoints** (require UI):
-- CP-1.5: Redirect to signin when accessing /admin
-- CP-1.6: Authentication flow with signin page
-- CP-1.7: Invalid credentials handling
+**Issues Discovered & Fixed**:
+1. **Middleware Location**: Must be in `src/middleware.ts` not root `middleware.ts` for Next.js 15 with src/ structure
+2. **Middleware Matcher**: Pattern `/admin/:path*` didn't match `/admin` itself - fixed with `['/admin', '/admin/:path*']`
+3. **NEXTAUTH_URL Port**: Was set to 3000 but server runs on 3002 - caused session issues
+4. **Admin Password**: Seed script didn't load .env.local - fixed by passing env vars explicitly
+5. **Server Component Events**: Add Project button was in Server Component - extracted to Client Component
 
 #### ✅ Phase 2: Data Access Layer (100%)
 - **Duration**: 1 day
@@ -128,22 +132,87 @@ reorderProject(id, dir) // Atomic swap with adjacent project
 - Validation on both client and server
 - Optional GitHub URL field
 
+#### ✅ Phase 3: Public Landing Page (100%)
+- **Duration**: 2 days
+- **Status**: Complete
+- **Checkpoints**: 8/8 verified
+- **Tests**: 7 tests passing (ProjectCard component)
+
+**Deliverables**:
+- Landing page route with public project display
+- ProjectCard component (name, description, links, GitHub icon)
+- ProjectList component (maps over projects)
+- Hardcoded site description
+- RBK Strategies attribution link
+- Responsive layout (mobile + desktop)
+- Empty state handling
+- Component tests
+
+**Design Decisions**:
+- **Accent Color**: Green (#10b981 - Tailwind green-500) for developer aesthetic
+- **Layout**: Vertical list (not grid) for easy scanning
+- **Typography**: JetBrains Mono monospace font
+- **Spacing**: Generous (py-16, mb-12) for readability
+- **Max Width**: 4xl (896px) for optimal line length
+- **Links**: All open in new tab with security attributes
+
+**Landing Page Copy**:
+> "A collection of experimental open-source projects and prototypes. This is where new ideas are tested, features are explored, and innovative solutions take their first steps."
+
+#### ✅ Phase 4: Admin Dashboard UI (100%)
+- **Duration**: 2 days
+- **Status**: Complete
+- **Checkpoints**: 7/7 verified
+
+**Deliverables**:
+- Admin layout with header and navigation
+- Admin dashboard page with project table
+- ProjectTable component (displays all projects)
+- ReorderControls component (up/down arrows)
+- AddProjectButton component (Client Component)
+- Logout button in header
+- Stats cards (total, public, private counts)
+
+**UI Features**:
+- Table with columns: Order, Name, URL, Visibility, Actions
+- Visibility badges (green for PUBLIC, gray for PRIVATE)
+- Reorder controls with disabled states
+- Edit and Delete buttons per row
+- Loading states during operations
+- Responsive design
+
+**Accessibility**:
+- Proper ARIA labels on buttons
+- Keyboard navigation support
+- Disabled states with visual feedback
+- Semantic HTML
+
 ### In Progress
 
-#### 🔄 Phase 3: Public Landing Page (0%)
-- **Status**: Not started
-- **Blockers**: Design preferences needed (accent color, layout)
-- **Next**: Implement with sensible defaults
+#### 🔄 Phase 5: Admin CRUD Operations (60%)
+- **Duration**: 3 days (in progress)
+- **Status**: Partial - Delete & Reorder complete, Add/Edit forms pending
+- **Checkpoints**: 5/12 verified
+
+**Completed**:
+- ✅ DELETE /api/projects/[id] endpoint
+- ✅ PATCH /api/projects/[id] endpoint
+- ✅ PATCH /api/projects/[id]/reorder endpoint
+- ✅ Delete functionality with confirmation
+- ✅ Reorder functionality (atomic swaps)
+
+**Pending**:
+- ⏳ POST /api/projects endpoint
+- ⏳ ProjectForm component (create/edit)
+- ⏳ Modal component for form display
+- ⏳ Wire up "Add Project" button
+- ⏳ Wire up "Edit" buttons
+- ⏳ Form validation (client + server)
+- ⏳ Success/error feedback
+
+**Next Steps**: Complete Add/Edit form implementation
 
 ### Upcoming Phases
-
-#### ⏳ Phase 4: Admin Dashboard UI (0%)
-- **Dependencies**: Phase 3 complete
-- **Estimated Duration**: 2 days
-
-#### ⏳ Phase 5: Admin CRUD Operations (0%)
-- **Dependencies**: Phase 4 complete
-- **Estimated Duration**: 3 days
 
 #### ⏳ Phase 6: Production Deployment (0%)
 - **Dependencies**: Phase 5 complete
@@ -155,9 +224,10 @@ reorderProject(id, dir) // Atomic swap with adjacent project
 
 ### Test Coverage
 
-**Unit Tests**: 30/30 passing (100%)
+**Unit Tests**: 37/37 passing (100%)
 - Password utilities: 13 tests
 - ProjectService: 17 tests
+- ProjectCard component: 7 tests
 
 **Integration Tests**: 0 (planned for Phase 7)
 **E2E Tests**: 0 (planned for Phase 7)
@@ -200,8 +270,9 @@ reorderProject(id, dir) // Atomic swap with adjacent project
 - **Location**: `scratch-space/scratchspace-website/`
 - **Remote**: https://github.com/rexkirshner/scratch-space
 - **Branch**: main
-- **Commits**: 5 (not pushed yet)
-- **Latest Commit**: "Add Sprint 001 Report - Phases 0-2 Complete"
+- **Commits**: 13 (not pushed yet)
+- **Latest Commit**: "Fix: Move middleware to src directory for Next.js 15"
+- **Sprint Reports**: sprint-001-report.md, sprint-002-report.md (in docs/development/)
 
 ### Recent Decisions Log
 
