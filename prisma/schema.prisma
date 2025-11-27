@@ -1,0 +1,61 @@
+// Prisma Schema for scratchspace.dev
+// Version: 1.0
+// See: docs/planning/PRD-v1.md for detailed specifications
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// User model for admin authentication and authorization
+/// Supports multiple users with role-based access (future expansion)
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  role         UserRole @default(ADMIN)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("users")
+}
+
+/// User roles for authorization
+/// ADMIN: Full access (create, edit, delete, reorder)
+/// EDITOR: Can edit existing projects (future)
+/// VIEWER: Read-only access (future)
+enum UserRole {
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+/// Project model for experimental projects displayed on landing page
+/// Supports public/private visibility and manual ordering
+model Project {
+  id          String     @id @default(cuid())
+  name        String     @db.VarChar(100)
+  url         String
+  description String     @db.VarChar(500)
+  githubUrl   String?
+  visibility  Visibility @default(PRIVATE)
+  order       Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@map("projects")
+  @@index([visibility, order])
+}
+
+/// Visibility states for projects
+/// PUBLIC: Visible to all visitors on landing page
+/// PRIVATE: Only visible to authenticated admins
+enum Visibility {
+  PUBLIC
+  PRIVATE
+}
