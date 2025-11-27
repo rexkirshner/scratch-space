@@ -22,7 +22,7 @@ export function ProjectList({ projects, isAuthenticated }: ProjectListProps) {
   return (
     <section className="space-y-6">
       <h2 className="text-2xl font-semibold text-gray-300 mb-6">
-        Experimental Projects
+        Public Projects
       </h2>
       <div className="divide-y-0">
         {projects.map((project) => (
