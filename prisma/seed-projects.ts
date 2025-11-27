@@ -51,11 +51,20 @@ async function main() {
         visibility: 'PUBLIC',
         order: 3,
       },
+      {
+        name: 'National Charity League, Los Angeles',
+        url: 'https://ncl.scratchspace.dev/',
+        description:
+          'Fostering mother-daughter relationships through philanthropy and community service since 1925.',
+        visibility: 'PRIVATE',
+        order: 4,
+      },
     ],
   });
 
   console.log(`✅ Created ${projects.count} sample projects`);
   console.log('   - 4 PUBLIC projects');
+  console.log('   - 1 PRIVATE project');
 }
 
 main()
