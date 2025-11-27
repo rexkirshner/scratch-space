@@ -10,6 +10,8 @@
 
 import type { Project } from '@prisma/client';
 import { ReorderControls } from './ReorderControls';
+import { Modal } from '@/components/shared/Modal';
+import { ProjectForm } from './ProjectForm';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -20,6 +22,7 @@ interface ProjectTableProps {
 export function ProjectTable({ projects }: ProjectTableProps) {
   const router = useRouter();
   const [loading, setLoading] = useState<string | null>(null);
+  const [editingProject, setEditingProject] = useState<Project | null>(null);
 
   const handleMoveUp = async (id: string) => {
     setLoading(id);
@@ -65,9 +68,13 @@ export function ProjectTable({ projects }: ProjectTableProps) {
     }
   };
 
-  const handleEdit = (id: string) => {
-    // TODO: Implement in Phase 5
-    alert(`Edit project ${id} - Coming in Phase 5`);
+  const handleEdit = (project: Project) => {
+    setEditingProject(project);
+  };
+
+  const handleEditSuccess = () => {
+    setEditingProject(null);
+    router.refresh();
   };
 
   const handleDelete = async (id: string, name: string) => {
@@ -170,7 +177,7 @@ export function ProjectTable({ projects }: ProjectTableProps) {
               <td className="py-3 px-4 text-right">
                 <div className="flex items-center justify-end gap-2">
                   <button
-                    onClick={() => handleEdit(project.id)}
+                    onClick={() => handleEdit(project)}
                     disabled={loading === project.id}
                     className="px-3 py-1 text-sm text-gray-400 hover:text-white border border-gray-700 hover:border-gray-600 rounded transition-colors disabled:opacity-50"
                   >
@@ -189,6 +196,21 @@ export function ProjectTable({ projects }: ProjectTableProps) {
           ))}
         </tbody>
       </table>
+
+      {/* Edit Modal */}
+      <Modal
+        isOpen={!!editingProject}
+        onClose={() => setEditingProject(null)}
+        title="Edit Project"
+      >
+        {editingProject && (
+          <ProjectForm
+            project={editingProject}
+            onSuccess={handleEditSuccess}
+            onCancel={() => setEditingProject(null)}
+          />
+        )}
+      </Modal>
     </div>
   );
 }
