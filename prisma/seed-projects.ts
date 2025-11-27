@@ -16,45 +16,46 @@ async function main() {
   const projects = await prisma.project.createMany({
     data: [
       {
-        name: 'AI Context System',
-        url: 'https://github.com/rexkirshner/ai-context-system',
+        name: 'Input Atlas',
+        url: 'https://www.inputatlas.com/',
         description:
-          'A comprehensive documentation system for AI-assisted development with session continuity and context preservation.',
-        githubUrl: 'https://github.com/rexkirshner/ai-context-system',
+          'A curated collection of high-quality AI prompts for the community, released under CC0 public domain licensing.',
+        githubUrl: 'https://github.com/rexkirshner/input-atlas',
         visibility: 'PUBLIC',
         order: 0,
       },
       {
-        name: 'Experimental Chat Interface',
-        url: 'https://chat.scratchspace.dev',
+        name: 'AI Context System',
+        url: 'https://acs.rexkirshner.com/',
         description:
-          'Testing new conversation patterns and UI interactions for AI chat applications.',
-        githubUrl: 'https://github.com/rexkirshner/experimental-chat',
+          'Enables developers to externalize AI reasoning and maintain perfect session continuity across work sessions.',
+        githubUrl: 'https://github.com/rexkirshner/ai-context-system',
         visibility: 'PUBLIC',
         order: 1,
       },
       {
-        name: 'Next.js Playground',
-        url: 'https://playground.scratchspace.dev',
+        name: 'Podcast Framework',
+        url: 'https://podcast-framework.rexkirshner.com/',
         description:
-          'Exploring Next.js 15 features including Server Actions, Parallel Routes, and the new App Router patterns.',
+          'Open-source web framework combining Astro, TypeScript, Sanity CMS, and Tailwind CSS to help creators build production-ready podcast websites.',
+        githubUrl: 'https://github.com/rexkirshner/podcast-framework',
         visibility: 'PUBLIC',
         order: 2,
       },
       {
-        name: 'Internal Tool Prototype',
-        url: 'https://internal.scratchspace.dev',
+        name: 'Inevitable Ethereum',
+        url: 'https://inevitableeth.com/',
         description:
-          'Private testing ground for new workflow automation tools.',
-        visibility: 'PRIVATE',
+          'Educational platform dedicated to explaining Ethereum as the World Computer and exploring its role in decentralized systems.',
+        githubUrl: 'https://github.com/rexkirshner/inevitable-ethereum',
+        visibility: 'PUBLIC',
         order: 3,
       },
     ],
   });
 
   console.log(`✅ Created ${projects.count} sample projects`);
-  console.log('   - 3 PUBLIC projects');
-  console.log('   - 1 PRIVATE project');
+  console.log('   - 4 PUBLIC projects');
 }
 
 main()
