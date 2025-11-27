@@ -15,7 +15,7 @@ import { reorderDirectionSchema } from '@/lib/validations/project.schema';
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -29,7 +29,8 @@ export async function PATCH(
     const validated = reorderDirectionSchema.parse(body.direction);
 
     // Reorder project
-    await reorderProject(params.id, validated);
+    const { id } = await params;
+    await reorderProject(id, validated);
 
     return NextResponse.json({ success: true });
   } catch (error) {
