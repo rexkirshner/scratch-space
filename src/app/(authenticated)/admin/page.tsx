@@ -8,6 +8,7 @@
 
 import { getAllProjects } from '@/lib/services/project.service';
 import { ProjectTable } from '@/components/admin/ProjectTable';
+import { AddProjectButton } from '@/components/admin/AddProjectButton';
 
 export default async function AdminPage() {
   const projects = await getAllProjects();
@@ -26,12 +27,7 @@ export default async function AdminPage() {
           </p>
         </div>
 
-        <button
-          onClick={() => alert('Add Project form - Coming in Phase 5')}
-          className="px-4 py-2 bg-green-600 hover:bg-green-500 text-white rounded transition-colors"
-        >
-          Add Project
-        </button>
+        <AddProjectButton />
       </div>
 
       {/* Project Table */}
