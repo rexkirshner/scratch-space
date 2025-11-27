@@ -11,9 +11,10 @@ import { ProjectCard } from './ProjectCard';
 
 interface ProjectListProps {
   projects: Project[];
+  isAuthenticated: boolean;
 }
 
-export function ProjectList({ projects }: ProjectListProps) {
+export function ProjectList({ projects, isAuthenticated }: ProjectListProps) {
   if (projects.length === 0) {
     return null; // Empty state handled by parent
   }
@@ -25,7 +26,11 @@ export function ProjectList({ projects }: ProjectListProps) {
       </h2>
       <div className="divide-y-0">
         {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+          <ProjectCard
+            key={project.id}
+            project={project}
+            isAuthenticated={isAuthenticated}
+          />
         ))}
       </div>
     </section>

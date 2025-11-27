@@ -1,16 +1,26 @@
 /**
  * Landing Page
- * Displays public projects with site description and RBK attribution
+ * Displays public projects (or all projects if authenticated)
+ * with site description and RBK attribution
  *
  * @module app/page
  * @see PRD Phase 3: Public Landing Page
  */
 
-import { getPublicProjects } from '@/lib/services/project.service';
+import { getPublicProjects, getAllProjects } from '@/lib/services/project.service';
 import { ProjectList } from '@/components/landing/ProjectList';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/lib/auth/auth.config';
 
 export default async function Home() {
-  const projects = await getPublicProjects();
+  // Check if user is authenticated
+  const session = await getServerSession(authOptions);
+  const isAuthenticated = !!session;
+
+  // If authenticated, show all projects; otherwise show only public
+  const projects = isAuthenticated
+    ? await getAllProjects()
+    : await getPublicProjects();
 
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-[#ededed]">
@@ -29,11 +39,11 @@ export default async function Home() {
 
         {/* Projects Section */}
         {projects.length > 0 ? (
-          <ProjectList projects={projects} />
+          <ProjectList projects={projects} isAuthenticated={isAuthenticated} />
         ) : (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">
-              No public projects yet. Check back soon!
+              No {isAuthenticated ? '' : 'public '}projects yet. Check back soon!
             </p>
           </div>
         )}

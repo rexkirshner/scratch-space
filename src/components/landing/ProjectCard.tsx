@@ -10,22 +10,35 @@ import type { Project } from '@prisma/client';
 
 interface ProjectCardProps {
   project: Project;
+  isAuthenticated: boolean;
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, isAuthenticated }: ProjectCardProps) {
+  const isPrivate = project.visibility === 'PRIVATE';
+
   return (
     <article className="border-b border-gray-800 pb-6 mb-6 last:border-b-0 last:pb-0 last:mb-0">
-      {/* Project Name */}
-      <h2 className="text-xl font-semibold mb-2">
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-green-400 hover:text-green-300 hover:underline transition-colors"
-        >
-          {project.name}
-        </a>
-      </h2>
+      {/* Project Name with Private Badge */}
+      <div className="flex items-center gap-3 mb-2">
+        <h2 className="text-xl font-semibold">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-green-400 hover:text-green-300 hover:underline transition-colors"
+          >
+            {project.name}
+          </a>
+        </h2>
+        {isAuthenticated && isPrivate && (
+          <span
+            className="text-xs px-2 py-1 bg-gray-800 text-gray-400 rounded border border-gray-700"
+            title="This project is only visible to you (logged in)"
+          >
+            Private
+          </span>
+        )}
+      </div>
 
       {/* Description */}
       <p className="text-gray-400 mb-3 leading-relaxed">
