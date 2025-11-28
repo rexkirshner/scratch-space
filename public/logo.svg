@@ -1,0 +1,27 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Terminal window -->
+  <rect x="20" y="40" width="160" height="120" rx="8" fill="#0a0a0a" stroke="#22c55e" stroke-width="3"/>
+
+  <!-- Terminal header dots -->
+  <circle cx="35" cy="55" r="5" fill="#22c55e"/>
+  <circle cx="52" cy="55" r="5" fill="#22c55e" opacity="0.6"/>
+  <circle cx="69" cy="55" r="5" fill="#22c55e" opacity="0.3"/>
+
+  <!-- Terminal text - "scratch" -->
+  <text x="35" y="90" font-family="monospace" font-size="20" font-weight="bold" fill="#22c55e">
+    scratch
+  </text>
+
+  <!-- Terminal text - "space" -->
+  <text x="35" y="115" font-family="monospace" font-size="20" font-weight="bold" fill="#22c55e">
+    space
+  </text>
+
+  <!-- Cursor -->
+  <rect x="35" y="125" width="12" height="20" fill="#22c55e" opacity="0.8"/>
+
+  <!-- Bottom accent - command prompt style -->
+  <text x="35" y="145" font-family="monospace" font-size="14" fill="#22c55e" opacity="0.6">
+    $ _dev
+  </text>
+</svg>

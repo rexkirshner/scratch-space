@@ -1,0 +1,14 @@
+<svg width="300" height="100" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Monogram style - "ss" in terminal brackets -->
+  <text x="20" y="65" font-family="monospace" font-size="48" font-weight="bold" fill="#22c55e">
+    [ss]
+  </text>
+
+  <!-- Full text -->
+  <text x="120" y="50" font-family="monospace" font-size="24" font-weight="bold" fill="#ededed">
+    scratchspace
+  </text>
+  <text x="120" y="75" font-family="monospace" font-size="16" fill="#22c55e">
+    .dev
+  </text>
+</svg>
