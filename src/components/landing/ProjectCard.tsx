@@ -18,7 +18,7 @@ export function ProjectCard({ project, isAuthenticated }: ProjectCardProps) {
 
   return (
     <article
-      className="border-b border-gray-800 pb-6 mb-6 last:border-b-0 last:pb-0 last:mb-0"
+      className="mb-6 last:mb-0"
       itemScope
       itemType="https://schema.org/SoftwareSourceCode"
     >
