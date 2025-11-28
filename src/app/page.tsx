@@ -12,6 +12,9 @@ import { ProjectList } from '@/components/landing/ProjectList';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth/auth.config';
 
+// Force dynamic rendering to prevent build-time database access
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   // Check if user is authenticated
   const session = await getServerSession(authOptions);
