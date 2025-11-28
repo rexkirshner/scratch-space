@@ -65,15 +65,16 @@ export async function GET(request: NextRequest) {
       // Tables don't exist yet, continue with setup
     }
 
-    // 3. Run migration SQL
-    const migrationSQL = `
-      -- CreateEnum
-      CREATE TYPE "UserRole" AS ENUM ('ADMIN', 'EDITOR', 'VIEWER');
+    // 3. Run migration SQL (split into individual statements)
+    await prisma.$executeRawUnsafe(
+      `CREATE TYPE "UserRole" AS ENUM ('ADMIN', 'EDITOR', 'VIEWER')`
+    );
 
-      -- CreateEnum
-      CREATE TYPE "Visibility" AS ENUM ('PUBLIC', 'PRIVATE');
+    await prisma.$executeRawUnsafe(
+      `CREATE TYPE "Visibility" AS ENUM ('PUBLIC', 'PRIVATE')`
+    );
 
-      -- CreateTable
+    await prisma.$executeRawUnsafe(`
       CREATE TABLE "users" (
           "id" TEXT NOT NULL,
           "email" TEXT NOT NULL,
@@ -82,11 +83,11 @@ export async function GET(request: NextRequest) {
           "role" "UserRole" NOT NULL DEFAULT 'ADMIN',
           "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
           "updatedAt" TIMESTAMP(3) NOT NULL,
-
           CONSTRAINT "users_pkey" PRIMARY KEY ("id")
-      );
+      )
+    `);
 
-      -- CreateTable
+    await prisma.$executeRawUnsafe(`
       CREATE TABLE "projects" (
           "id" TEXT NOT NULL,
           "name" VARCHAR(100) NOT NULL,
@@ -97,18 +98,17 @@ export async function GET(request: NextRequest) {
           "order" INTEGER NOT NULL DEFAULT 0,
           "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
           "updatedAt" TIMESTAMP(3) NOT NULL,
-
           CONSTRAINT "projects_pkey" PRIMARY KEY ("id")
-      );
+      )
+    `);
 
-      -- CreateIndex
-      CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+    await prisma.$executeRawUnsafe(
+      `CREATE UNIQUE INDEX "users_email_key" ON "users"("email")`
+    );
 
-      -- CreateIndex
-      CREATE INDEX "projects_visibility_order_idx" ON "projects"("visibility", "order");
-    `;
-
-    await prisma.$executeRawUnsafe(migrationSQL);
+    await prisma.$executeRawUnsafe(
+      `CREATE INDEX "projects_visibility_order_idx" ON "projects"("visibility", "order")`
+    );
 
     // 4. Create admin user
     const adminEmail = searchParams.get('email') || 'admin@scratchspace.dev';
