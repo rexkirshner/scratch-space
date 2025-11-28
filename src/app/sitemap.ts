@@ -6,14 +6,10 @@
  */
 
 import { MetadataRoute } from 'next';
-import { getPublicProjects } from '@/lib/services/project.service';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://scratchspace.dev';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Get all public projects for dynamic URLs
-  const projects = await getPublicProjects();
-
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -24,9 +20,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Dynamic project pages (external links, but we list them for reference)
-  // Note: External project URLs are not included in sitemap as they're not part of our domain
-  // Only listing pages that exist on scratchspace.dev
+  // Note: Project URLs are external and not included in sitemap
+  // as they're not part of the scratchspace.dev domain
 
   return staticPages;
 }
