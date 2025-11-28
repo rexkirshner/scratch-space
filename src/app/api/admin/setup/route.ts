@@ -17,10 +17,36 @@ export async function GET(request: NextRequest) {
     // 1. Verify secret
     const { searchParams } = new URL(request.url);
     const secret = searchParams.get('secret');
+    const envSecret = process.env.NEXTAUTH_SECRET;
 
-    if (!secret || secret !== process.env.NEXTAUTH_SECRET) {
+    // Debug mode (only in development)
+    const debug = searchParams.get('debug') === 'true';
+    if (debug && process.env.NODE_ENV === 'development') {
+      return NextResponse.json({
+        providedSecret: secret ? `${secret.substring(0, 5)}...` : 'not provided',
+        envSecret: envSecret ? `${envSecret.substring(0, 5)}...` : 'not set',
+        match: secret === envSecret,
+        providedLength: secret?.length || 0,
+        envLength: envSecret?.length || 0,
+      });
+    }
+
+    if (!envSecret) {
       return NextResponse.json(
-        { error: 'Unauthorized - Invalid secret' },
+        {
+          error: 'Server misconfigured - NEXTAUTH_SECRET not set',
+          hint: 'Add NEXTAUTH_SECRET to Vercel environment variables'
+        },
+        { status: 500 }
+      );
+    }
+
+    if (!secret || secret !== envSecret) {
+      return NextResponse.json(
+        {
+          error: 'Unauthorized - Invalid secret',
+          hint: 'Ensure the secret parameter matches your NEXTAUTH_SECRET exactly (check for URL encoding issues)'
+        },
         { status: 401 }
       );
     }
