@@ -39,7 +39,7 @@ export function ProjectTable({ projects }: ProjectTableProps) {
         const error = await res.json();
         alert(`Error: ${error.message || 'Failed to reorder'}`);
       }
-    } catch (error) {
+    } catch (_error) {
       alert('Failed to reorder project');
     } finally {
       setLoading(null);
@@ -61,7 +61,7 @@ export function ProjectTable({ projects }: ProjectTableProps) {
         const error = await res.json();
         alert(`Error: ${error.message || 'Failed to reorder'}`);
       }
-    } catch (error) {
+    } catch (_error) {
       alert('Failed to reorder project');
     } finally {
       setLoading(null);
@@ -94,7 +94,7 @@ export function ProjectTable({ projects }: ProjectTableProps) {
         const error = await res.json();
         alert(`Error: ${error.message || 'Failed to delete'}`);
       }
-    } catch (error) {
+    } catch (_error) {
       alert('Failed to delete project');
     } finally {
       setLoading(null);
@@ -105,7 +105,7 @@ export function ProjectTable({ projects }: ProjectTableProps) {
     return (
       <div className="text-center py-12">
         <p className="text-gray-500">
-          No projects yet. Click "Add Project" to create one.
+          No projects yet. Click &quot;Add Project&quot; to create one.
         </p>
       </div>
     );

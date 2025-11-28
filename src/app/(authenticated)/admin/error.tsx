@@ -9,6 +9,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 export default function AdminError({
   error,
@@ -76,18 +77,18 @@ export default function AdminError({
             >
               Try again
             </button>
-            <a
+            <Link
               href="/admin"
               className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded transition-colors font-medium text-center"
             >
               Reload dashboard
-            </a>
-            <a
+            </Link>
+            <Link
               href="/"
               className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded transition-colors font-medium text-center"
             >
               Go to homepage
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -63,7 +63,7 @@ export class UpstashRateLimiter implements RateLimiter {
     };
   }
 
-  async reset(identifier: string): Promise<void> {
+  async reset(_identifier: string): Promise<void> {
     // Reset by using the Ratelimit reset method if available
     // Otherwise, we'd need direct Redis access which is already in the Ratelimit instance
     // For now, document this limitation

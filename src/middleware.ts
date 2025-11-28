@@ -36,7 +36,7 @@ export async function middleware(request: NextRequest) {
 
       // Use IP address as identifier (fallback to 127.0.0.1 for local dev)
       // Note: request.ip is available in edge runtime but not in type definitions
-      const ip = (request as any).ip ?? request.headers.get('x-forwarded-for') ?? '127.0.0.1';
+      const ip = (request as NextRequest & { ip?: string }).ip ?? request.headers.get('x-forwarded-for') ?? '127.0.0.1';
 
       // Check rate limit
       const result = await rateLimiter.check(ip);

@@ -11,6 +11,7 @@
 import { signIn } from 'next-auth/react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function SignInPage() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function SignInPage() {
         router.push(callbackUrl);
         router.refresh();
       }
-    } catch (err) {
+    } catch (_err) {
       setError('An error occurred. Please try again.');
     } finally {
       setLoading(false);
@@ -105,12 +106,12 @@ export default function SignInPage() {
           </form>
 
           <div className="mt-6 pt-6 border-t border-gray-800 text-center">
-            <a
+            <Link
               href="/"
               className="text-sm text-gray-400 hover:text-gray-300 transition-colors"
             >
               ← Back to home
-            </a>
+            </Link>
           </div>
         </div>
 
