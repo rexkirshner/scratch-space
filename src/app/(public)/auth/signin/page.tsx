@@ -110,7 +110,7 @@ export default function SignInPage() {
               href="/"
               className="text-sm text-gray-400 hover:text-gray-300 transition-colors"
             >
-              ← Back to home
+              ← Back to scratchspace.dev home
             </Link>
           </div>
         </div>

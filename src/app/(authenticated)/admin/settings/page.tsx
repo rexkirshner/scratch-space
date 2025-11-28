@@ -10,9 +10,20 @@ import { authOptions } from '@/lib/auth/auth.config';
 import { redirect } from 'next/navigation';
 import { SettingsForm } from '@/components/admin/SettingsForm';
 import { prisma } from '@/lib/db/prisma';
+import type { Metadata } from 'next';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  title: 'Account Settings',
+  description:
+    'Update your account email and password for scratchspace.dev admin access.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function SettingsPage() {
   const session = await getServerSession(authOptions);

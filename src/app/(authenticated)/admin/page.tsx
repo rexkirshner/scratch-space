@@ -9,9 +9,20 @@
 import { getAllProjects } from '@/lib/services/project.service';
 import { ProjectTable } from '@/components/admin/ProjectTable';
 import { AddProjectButton } from '@/components/admin/AddProjectButton';
+import type { Metadata } from 'next';
 
 // Force dynamic rendering to prevent build-time database access
 export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  title: 'Project Management',
+  description:
+    'Manage your experimental open-source projects. Add, edit, reorder, and control visibility of projects displayed on scratchspace.dev.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function AdminPage() {
   const projects = await getAllProjects();

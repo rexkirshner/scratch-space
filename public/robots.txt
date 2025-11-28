@@ -1,0 +1,13 @@
+# robots.txt for scratchspace.dev
+# Allow all bots to index public pages, block admin/auth pages
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /auth/
+Disallow: /auth/*
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://scratchspace.dev/sitemap.xml
