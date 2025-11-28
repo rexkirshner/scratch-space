@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { JetBrains_Mono } from 'next/font/google';
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import './globals.css';
 
 const jetbrainsMono = JetBrains_Mono({
@@ -92,9 +93,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
   return (
     <html lang="en">
       <body className={`${jetbrainsMono.variable} font-mono antialiased`}>
+        {gaId && <GoogleAnalytics measurementId={gaId} />}
         {children}
       </body>
     </html>
