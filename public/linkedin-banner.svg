@@ -1,0 +1,30 @@
+<svg width="1584" height="396" viewBox="0 0 1584 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1584" height="396" fill="#0a0a0a"/>
+
+  <!-- Terminal window -->
+  <rect x="80" y="80" width="1424" height="236" rx="8" stroke="#22c55e" stroke-width="2" fill="none"/>
+
+  <!-- Terminal header dots -->
+  <circle cx="100" cy="100" r="6" fill="#22c55e"/>
+  <circle cx="120" cy="100" r="6" fill="#22c55e" opacity="0.6"/>
+  <circle cx="140" cy="100" r="6" fill="#22c55e" opacity="0.3"/>
+
+  <!-- Main text -->
+  <text x="792" y="180" font-family="monospace" font-size="56" font-weight="bold" fill="#ededed" text-anchor="middle">
+    scratchspace.dev
+  </text>
+
+  <!-- Subtitle -->
+  <text x="792" y="240" font-family="monospace" font-size="24" fill="#9ca3af" text-anchor="middle">
+    Custom development for small and growing businesses
+  </text>
+
+  <!-- Command prompt -->
+  <text x="100" y="285" font-family="monospace" font-size="20" fill="#22c55e">
+    <tspan>$ build_something_great</tspan>
+  </text>
+
+  <!-- Cursor -->
+  <rect x="420" y="263" width="10" height="24" fill="#22c55e" opacity="0.8"/>
+</svg>
