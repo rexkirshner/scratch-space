@@ -19,10 +19,10 @@
   <circle cx="155" cy="105" r="8" fill="#22c55e" opacity="0.3"/>
 
   <!-- Text content -->
-  <text x="200" y="180" font-family="monospace" font-size="36" font-weight="bold" fill="#22c55e" text-anchor="middle">
+  <text x="110" y="180" font-family="monospace" font-size="36" font-weight="bold" fill="#22c55e">
     scratch
   </text>
-  <text x="200" y="220" font-family="monospace" font-size="36" font-weight="bold" fill="#22c55e" text-anchor="middle">
+  <text x="110" y="220" font-family="monospace" font-size="36" font-weight="bold" fill="#22c55e">
     space
   </text>
 
