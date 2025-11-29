@@ -32,5 +32,5 @@
   </text>
 
   <!-- Cursor -->
-  <rect x="110" y="285" width="16" height="24" fill="#22c55e" opacity="0.8"/>
+  <rect x="208" y="255" width="12" height="24" fill="#22c55e" opacity="0.8"/>
 </svg>
