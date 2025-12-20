@@ -78,6 +78,12 @@ export default async function Home() {
         founder: {
           '@id': `${SITE_URL}/#person`,
         },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Los Angeles',
+          addressRegion: 'CA',
+          addressCountry: 'US',
+        },
         sameAs: [
           'https://linkedin.com/company/rbkstrategies',
           'https://github.com/rbkstrategies',
@@ -164,6 +170,9 @@ export default async function Home() {
                 Rex Kirshner
               </a>
               , Founder
+            </p>
+            <p className="text-sm text-gray-600 mt-2">
+              Los Angeles, CA
             </p>
           </footer>
         </div>
