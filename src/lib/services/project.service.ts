@@ -6,6 +6,7 @@
  * @see PRD Phase 2: Data Access Layer
  */
 
+import { revalidatePath } from 'next/cache';
 import { prisma } from '@/lib/db/prisma';
 import {
   createProjectSchema,
@@ -83,7 +84,7 @@ export async function createProject(
   const nextOrder = (highestOrder?.order ?? -1) + 1;
 
   // Create project
-  return prisma.project.create({
+  const project = await prisma.project.create({
     data: {
       name: validated.name,
       url: validated.url,
@@ -93,6 +94,11 @@ export async function createProject(
       order: nextOrder,
     },
   });
+
+  // Invalidate landing page cache
+  revalidatePath('/');
+
+  return project;
 }
 
 /**
@@ -111,17 +117,24 @@ export async function updateProject(
   // Validate input
   const validated = updateProjectSchema.parse(data);
 
-  // Check project exists
-  const existing = await prisma.project.findUnique({ where: { id } });
-  if (!existing) {
-    throw new Error(`Project not found: ${id}`);
-  }
+  try {
+    // Update project (Prisma throws P2025 if not found)
+    const project = await prisma.project.update({
+      where: { id },
+      data: validated,
+    });
 
-  // Update project
-  return prisma.project.update({
-    where: { id },
-    data: validated,
-  });
+    // Invalidate landing page cache
+    revalidatePath('/');
+
+    return project;
+  } catch (error) {
+    // Handle "Record not found" error
+    if (error instanceof Error && 'code' in error && error.code === 'P2025') {
+      throw new Error(`Project not found: ${id}`);
+    }
+    throw error;
+  }
 }
 
 /**
@@ -133,15 +146,23 @@ export async function updateProject(
  * @throws Error if project not found
  */
 export async function deleteProject(id: string): Promise<Project> {
-  // Check project exists
-  const existing = await prisma.project.findUnique({ where: { id } });
-  if (!existing) {
-    throw new Error(`Project not found: ${id}`);
-  }
+  try {
+    // Delete project (Prisma throws P2025 if not found)
+    const project = await prisma.project.delete({
+      where: { id },
+    });
 
-  return prisma.project.delete({
-    where: { id },
-  });
+    // Invalidate landing page cache
+    revalidatePath('/');
+
+    return project;
+  } catch (error) {
+    // Handle "Record not found" error
+    if (error instanceof Error && 'code' in error && error.code === 'P2025') {
+      throw new Error(`Project not found: ${id}`);
+    }
+    throw error;
+  }
 }
 
 /**
@@ -160,17 +181,21 @@ export async function reorderProject(
   // Validate direction
   const validatedDirection = reorderDirectionSchema.parse(direction);
 
-  // Get current project
-  const current = await prisma.project.findUnique({ where: { id } });
+  // Get current project (only need id and order)
+  const current = await prisma.project.findUnique({
+    where: { id },
+    select: { id: true, order: true },
+  });
   if (!current) {
     throw new Error(`Project not found: ${id}`);
   }
 
-  // Find adjacent project
+  // Find adjacent project (only need id and order)
   const adjacent = await prisma.project.findFirst({
     where: {
       order: validatedDirection === 'up' ? current.order - 1 : current.order + 1,
     },
+    select: { id: true, order: true },
   });
 
   if (!adjacent) {
@@ -190,4 +215,7 @@ export async function reorderProject(
       data: { order: current.order },
     }),
   ]);
+
+  // Invalidate landing page cache
+  revalidatePath('/');
 }

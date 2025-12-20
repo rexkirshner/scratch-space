@@ -13,8 +13,9 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth/auth.config';
 import type { Metadata } from 'next';
 
-// Force dynamic rendering to prevent build-time database access
-export const dynamic = 'force-dynamic';
+// ISR: Cache page for 60 seconds, revalidate on project mutations
+// See: docs/audits/PRISMA_EFFICIENCY_AUDIT_01.md
+export const revalidate = 60;
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://scratchspace.dev';
 
