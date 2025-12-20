@@ -50,6 +50,7 @@ model Project {
 
   @@map("projects")
   @@index([visibility, order])
+  @@index([order])  // Supports reorder adjacent lookup
 }
 
 /// Visibility states for projects
