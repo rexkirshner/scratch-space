@@ -119,10 +119,16 @@ export default async function Home() {
             <h1 className="text-4xl font-bold mb-4 text-white">
               scratchspace.dev
             </h1>
-            <p className="text-lg text-gray-400 leading-relaxed max-w-2xl">
+            <p className="text-lg text-gray-400 leading-relaxed max-w-2xl mb-6">
               Technical development studio building custom web applications,
               AI-powered solutions, and scalable digital platforms for businesses.
             </p>
+            <a
+              href="mailto:inquiries@scratchspace.dev"
+              className="inline-block px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-medium rounded transition-colors"
+            >
+              Get in touch
+            </a>
           </header>
 
         {/* Projects Section */}
