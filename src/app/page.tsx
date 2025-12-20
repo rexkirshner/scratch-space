@@ -150,30 +150,32 @@ export default async function Home() {
 
           {/* Footer */}
           <footer className="mt-16 pt-8 border-t border-gray-800">
-            <p className="text-sm text-gray-500">
-              A property of{' '}
-              <a
-                href="https://rbkstrategies.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-green-500 hover:text-green-400 hover:underline transition-colors"
-              >
-                RBK Strategies
-              </a>
-              <span className="mx-2" aria-hidden="true">|</span>
-              <a
-                href="https://rexkirshner.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-300 hover:underline transition-colors"
-              >
-                Rex Kirshner
-              </a>
-              , Founder
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              Los Angeles, CA
-            </p>
+            <div className="flex justify-between items-center text-sm">
+              <p className="text-gray-500">
+                A property of{' '}
+                <a
+                  href="https://rbkstrategies.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-green-500 hover:text-green-400 hover:underline transition-colors"
+                >
+                  RBK Strategies
+                </a>
+                <span className="mx-2" aria-hidden="true">|</span>
+                <a
+                  href="https://rexkirshner.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-gray-300 hover:underline transition-colors"
+                >
+                  Rex Kirshner
+                </a>
+                , Founder
+              </p>
+              <p className="text-gray-600">
+                Los Angeles, CA
+              </p>
+            </div>
           </footer>
         </div>
       </main>
