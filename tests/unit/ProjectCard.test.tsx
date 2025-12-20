@@ -24,7 +24,7 @@ describe('ProjectCard', () => {
   };
 
   it('should render project name as link', () => {
-    render(<ProjectCard project={mockProject} />);
+    render(<ProjectCard project={mockProject} isAuthenticated={false} />);
 
     const nameLink = screen.getByRole('link', { name: 'Test Project' });
     expect(nameLink).toBeInTheDocument();
@@ -34,22 +34,22 @@ describe('ProjectCard', () => {
   });
 
   it('should render project description', () => {
-    render(<ProjectCard project={mockProject} />);
+    render(<ProjectCard project={mockProject} isAuthenticated={false} />);
 
     const description = screen.getByText('A test project for unit testing');
     expect(description).toBeInTheDocument();
   });
 
   it('should render "Visit Project" link', () => {
-    render(<ProjectCard project={mockProject} />);
+    render(<ProjectCard project={mockProject} isAuthenticated={false} />);
 
-    const visitLink = screen.getByRole('link', { name: /Visit Project/ });
+    const visitLink = screen.getByRole('link', { name: /Visit Test Project project website/ });
     expect(visitLink).toBeInTheDocument();
     expect(visitLink).toHaveAttribute('href', 'https://test.scratchspace.dev');
   });
 
   it('should render GitHub link when githubUrl is provided', () => {
-    render(<ProjectCard project={mockProject} />);
+    render(<ProjectCard project={mockProject} isAuthenticated={false} />);
 
     const githubLink = screen.getByRole('link', { name: /GitHub/ });
     expect(githubLink).toBeInTheDocument();
@@ -62,14 +62,14 @@ describe('ProjectCard', () => {
       githubUrl: null,
     };
 
-    render(<ProjectCard project={projectWithoutGithub} />);
+    render(<ProjectCard project={projectWithoutGithub} isAuthenticated={false} />);
 
     const githubLink = screen.queryByRole('link', { name: /GitHub/ });
     expect(githubLink).not.toBeInTheDocument();
   });
 
   it('should render all links with target="_blank" and rel="noopener noreferrer"', () => {
-    render(<ProjectCard project={mockProject} />);
+    render(<ProjectCard project={mockProject} isAuthenticated={false} />);
 
     const links = screen.getAllByRole('link');
     links.forEach((link) => {
@@ -79,7 +79,7 @@ describe('ProjectCard', () => {
   });
 
   it('should apply correct CSS classes for styling', () => {
-    render(<ProjectCard project={mockProject} />);
+    render(<ProjectCard project={mockProject} isAuthenticated={false} />);
 
     const nameLink = screen.getByRole('link', { name: 'Test Project' });
     expect(nameLink).toHaveClass('text-green-400');

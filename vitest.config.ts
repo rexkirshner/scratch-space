@@ -9,6 +9,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./tests/setup.ts'],
+    testTimeout: 30000, // bcrypt operations are intentionally slow
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

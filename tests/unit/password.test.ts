@@ -93,7 +93,7 @@ describe('Password Utilities', () => {
       expect(await verifyPassword(password2, hash2)).toBe(true);
       expect(await verifyPassword(password1, hash2)).toBe(false);
       expect(await verifyPassword(password2, hash1)).toBe(false);
-    });
+    }, 60000); // 6 bcrypt operations at ~5-8s each in jsdom
   });
 
   describe('validatePassword', () => {
