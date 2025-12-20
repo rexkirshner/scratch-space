@@ -61,6 +61,7 @@ export default async function Home() {
           '@id': `${SITE_URL}/#organization`,
         },
         sameAs: [
+          'https://rexkirshner.com',
           'https://linkedin.com/in/rexkirshner',
           'https://github.com/rexkirshner',
         ],
@@ -115,20 +116,9 @@ export default async function Home() {
         <div className="max-w-4xl mx-auto px-6 py-16">
           {/* Header */}
           <header className="mb-12">
-            <h1 className="text-4xl font-bold mb-2 text-white">
+            <h1 className="text-4xl font-bold mb-4 text-white">
               scratchspace.dev
             </h1>
-            <p className="text-lg text-green-400 mb-4">
-              by{' '}
-              <a
-                href="https://linkedin.com/in/rexkirshner"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-green-300 hover:underline transition-colors"
-              >
-                Rex Kirshner
-              </a>
-            </p>
             <p className="text-lg text-gray-400 leading-relaxed max-w-2xl">
               A collection of experimental open-source projects and prototypes.
               This is where new ideas are tested, features are explored, and
@@ -159,6 +149,16 @@ export default async function Home() {
               >
                 RBK Strategies
               </a>
+              <span className="mx-2" aria-hidden="true">|</span>
+              <a
+                href="https://rexkirshner.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-300 hover:underline transition-colors"
+              >
+                Rex Kirshner
+              </a>
+              , Founder
             </p>
           </footer>
         </div>

@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     'Ethereum education',
   ],
   authors: [
-    { name: 'Rex Kirshner', url: 'https://linkedin.com/in/rexkirshner' },
+    { name: 'Rex Kirshner', url: 'https://rexkirshner.com' },
     { name: 'RBK Strategies', url: 'https://rbkstrategies.com' },
   ],
   creator: 'Rex Kirshner',
