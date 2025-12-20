@@ -52,6 +52,20 @@ export default async function Home() {
         inLanguage: 'en-US',
       },
       {
+        '@type': 'Person',
+        '@id': `${SITE_URL}/#person`,
+        name: 'Rex Kirshner',
+        url: SITE_URL,
+        jobTitle: 'Software Engineer & Founder',
+        worksFor: {
+          '@id': `${SITE_URL}/#organization`,
+        },
+        sameAs: [
+          'https://linkedin.com/in/rexkirshner',
+          'https://github.com/rexkirshner',
+        ],
+      },
+      {
         '@type': 'Organization',
         '@id': `${SITE_URL}/#organization`,
         name: 'RBK Strategies',
@@ -60,21 +74,30 @@ export default async function Home() {
           '@type': 'ImageObject',
           url: `${SITE_URL}/logo.png`,
         },
-        sameAs: [],
+        founder: {
+          '@id': `${SITE_URL}/#person`,
+        },
+        sameAs: [
+          'https://linkedin.com/company/rbkstrategies',
+          'https://github.com/rbkstrategies',
+        ],
       },
       {
         '@type': 'CollectionPage',
         '@id': `${SITE_URL}/#webpage`,
         url: SITE_URL,
-        name: 'scratchspace.dev - Experimental Open-Source Projects',
+        name: 'scratchspace.dev - Experimental Open-Source Projects by Rex Kirshner',
         isPartOf: {
           '@id': `${SITE_URL}/#website`,
         },
         about: {
           '@id': `${SITE_URL}/#organization`,
         },
+        author: {
+          '@id': `${SITE_URL}/#person`,
+        },
         description:
-          'A collection of experimental open-source projects and prototypes. Explore innovative web technologies, developer tools, and educational platforms.',
+          'A collection of experimental open-source projects and prototypes by Rex Kirshner. Explore innovative web technologies, developer tools, and educational platforms.',
         inLanguage: 'en-US',
       },
     ],
