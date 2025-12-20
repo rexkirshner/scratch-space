@@ -11,9 +11,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://scratchspace.dev';
 const SITE_NAME = 'scratchspace.dev';
-const SITE_TITLE = 'scratchspace.dev - Experimental Open-Source Projects';
+const SITE_TITLE = 'scratchspace.dev - Technical Development Studio';
 const SITE_DESCRIPTION =
-  'A curated collection of experimental open-source projects and prototypes. Explore innovative web technologies, developer tools, and educational platforms built with modern frameworks.';
+  'Technical development studio building custom web applications, AI-powered solutions, and scalable digital platforms for businesses. The development arm of RBK Strategies.';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -34,19 +34,18 @@ export const metadata: Metadata = {
   },
   keywords: [
     'Rex Kirshner',
-    'Rex Kirshner projects',
     'RBK Strategies',
-    'open source',
-    'experimental projects',
-    'web development',
-    'developer tools',
-    'prototypes',
+    'technical development',
+    'software development',
+    'web applications',
+    'custom software',
+    'AI solutions',
+    'digital platforms',
     'Next.js',
     'TypeScript',
     'React',
-    'AI tools',
-    'podcast framework',
-    'Ethereum education',
+    'full-stack development',
+    'business solutions',
   ],
   authors: [
     { name: 'Rex Kirshner', url: 'https://rexkirshner.com' },
@@ -77,7 +76,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'scratchspace.dev - Experimental Open-Source Projects',
+        alt: 'scratchspace.dev - Technical Development Studio',
       },
     ],
   },

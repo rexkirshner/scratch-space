@@ -45,7 +45,7 @@ export default async function Home() {
         url: SITE_URL,
         name: 'scratchspace.dev',
         description:
-          'A curated collection of experimental open-source projects and prototypes',
+          'Technical development studio building custom web applications, AI solutions, and digital platforms',
         publisher: {
           '@id': `${SITE_URL}/#organization`,
         },
@@ -87,7 +87,7 @@ export default async function Home() {
         '@type': 'CollectionPage',
         '@id': `${SITE_URL}/#webpage`,
         url: SITE_URL,
-        name: 'scratchspace.dev - Experimental Open-Source Projects by Rex Kirshner',
+        name: 'scratchspace.dev - Technical Development Studio',
         isPartOf: {
           '@id': `${SITE_URL}/#website`,
         },
@@ -98,7 +98,7 @@ export default async function Home() {
           '@id': `${SITE_URL}/#person`,
         },
         description:
-          'A collection of experimental open-source projects and prototypes by Rex Kirshner. Explore innovative web technologies, developer tools, and educational platforms.',
+          'Custom software development and technical solutions by Rex Kirshner. We build web applications, AI integrations, and scalable digital platforms for businesses.',
         inLanguage: 'en-US',
       },
     ],
@@ -120,9 +120,8 @@ export default async function Home() {
               scratchspace.dev
             </h1>
             <p className="text-lg text-gray-400 leading-relaxed max-w-2xl">
-              A collection of experimental open-source projects and prototypes.
-              This is where new ideas are tested, features are explored, and
-              innovative solutions take their first steps.
+              Technical development studio building custom web applications,
+              AI-powered solutions, and scalable digital platforms for businesses.
             </p>
           </header>
 

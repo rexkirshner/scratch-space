@@ -9,10 +9,10 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'scratchspace.dev - Rex Kirshner',
+    name: 'scratchspace.dev - Technical Development Studio',
     short_name: 'scratchspace',
     description:
-      'Experimental open-source projects and prototypes by Rex Kirshner',
+      'Technical development studio building custom web applications and AI solutions for businesses',
     start_url: '/',
     display: 'standalone',
     background_color: '#0a0a0a',
