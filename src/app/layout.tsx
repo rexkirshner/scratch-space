@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     apple: '/favicon.svg',
   },
   keywords: [
+    'Rex Kirshner',
+    'Rex Kirshner projects',
+    'RBK Strategies',
     'open source',
     'experimental projects',
     'web development',
@@ -45,8 +48,11 @@ export const metadata: Metadata = {
     'podcast framework',
     'Ethereum education',
   ],
-  authors: [{ name: 'RBK Strategies', url: 'https://rbkstrategies.com' }],
-  creator: 'RBK Strategies',
+  authors: [
+    { name: 'Rex Kirshner', url: 'https://linkedin.com/in/rexkirshner' },
+    { name: 'RBK Strategies', url: 'https://rbkstrategies.com' },
+  ],
+  creator: 'Rex Kirshner',
   publisher: 'RBK Strategies',
   robots: {
     index: true,
